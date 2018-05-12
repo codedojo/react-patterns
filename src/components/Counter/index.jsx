@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 
 import './index.css';
 
-class Counter extends React.Component {
+const CounterContext = React.createContext({
+    count: 0,
+    increment: () => {},
+    decrement: () => {}
+});
+
+class CounterProvider extends React.Component {
+    static Consumer = CounterContext.Consumer;
+
     state = {
         count: 0
     };
@@ -12,13 +20,11 @@ class Counter extends React.Component {
 
     render() {
         return (
-            <div className="counter">
-                <button onClick={this.decrement}>-</button>
-                <span>{this.state.count}</span>
-                <button onClick={this.increment}>+</button>
-            </div>
+            <CounterContext.Provider value={{ count: this.state.count, increment: this.increment, decrement: this.decrement }}>
+                {this.props.children}
+            </CounterContext.Provider>
         );
     }
 }
 
-export default Counter;
+export default CounterProvider;
