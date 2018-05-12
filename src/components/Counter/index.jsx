@@ -11,13 +11,20 @@ class Counter extends React.Component {
     decrement = () => this.setState(state => ({ count: state.count - 1 }));
 
     render() {
-        return (
-            <div className="counter">
-                <button onClick={this.increment}>-</button>
-                <span>{this.state.count}</span>
-                <button onClick={this.decrement}>+</button>
-            </div>
-        );
+        return this.props.children({
+            className: `${this.state.count > 0 ? 'started' : 'not-started'} ${this.props.className}`,
+            getCounterProps: ({ onClick, map }) => ({
+                count: map(this.state.count),
+                increment: () => {
+                    this.increment();
+                    onClick();
+                },
+                decrement: () => {
+                    this.decrement();
+                    onClick();
+                }
+            })
+        });
     }
 }
 
