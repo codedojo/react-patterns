@@ -1,0 +1,24 @@
+.counter {
+    display: flex;
+    align-items: center;
+}
+
+.counter span {
+    width: 48px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.counter button {
+    border-radius: 100%;
+    border: none;
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.counter button:hover {
+    background-color: lightgray;
+}
