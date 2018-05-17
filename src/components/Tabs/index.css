@@ -1,0 +1,35 @@
+.tabs {
+    display: flex;
+    margin-bottom: .5rem;
+}
+
+.tabs .tab {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem 1rem;
+    position: relative;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.54);
+    transition: all .2s;
+}
+
+.tabs .tab:hover {
+    background-color: rgba(158,158,158,.1);
+}
+
+.tabs .tab.active {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.tabs .tab.active::after {
+    height: 2px;
+    width: 100%;
+    display: block;
+    content: " ";
+    bottom: -1px;
+    left: 0;
+    position: absolute;
+    background: #61dafb;
+}
