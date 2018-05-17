@@ -5,7 +5,7 @@ import Counter from './components/Counter';
 export default class App extends React.Component {
     render() {
         return (
-            <Counter />
+            <Counter step={3} />
         );
     }
 }
