@@ -1,26 +1,33 @@
 import React from 'react';
 
-import CounterProvider from './components/Counter';
-import Page from './components/Page';
+import ThemeContext from './theme';
+import Toolbar from './components/Toolbar';
+import Button from './components/Button';
 
 export default class App extends React.Component {
+    state = {
+        theme: 'light'
+    };
+
+    toggleTheme = () => this.setState(state => {
+        if (state.theme === 'light') {
+            return { theme: 'dark' };
+        } else {
+            return { theme: 'light' };
+        }
+    });
+
     render() {
         return (
-            <div>
-                <CounterProvider>
-                    <Page />
+            <ThemeContext.Provider>
+                <Toolbar>
+                    <Button onClick={this.toggleTheme}>
+                        <i className="material-icons">{this.state.theme === 'light' ? 'wb_sunny' : 'brightness_3'}</i>
+                    </Button>
+                </Toolbar>
 
-                    <CounterProvider.Consumer>
-                        {counter =>
-                            <div className="counter">
-                                <button onClick={counter.decrement}>-</button>
-                                <span>{counter.count}</span>
-                                <button onClick={counter.increment}>+</button>
-                            </div>
-                        }
-                    </CounterProvider.Consumer>
-                </CounterProvider>
-            </div>
+                <Button>Изменить тему</Button>
+            </ThemeContext.Provider>
         );
     }
 }
